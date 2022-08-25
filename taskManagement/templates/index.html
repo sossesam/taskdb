@@ -13,5 +13,18 @@
        <p> {{task}} </p> 
     {% endfor %}
 
+    <form action="{% url 'home' %}" method = "POST" >
+        {% csrf_token %}
+        <input type="text" name="task" placeholder="task"><br>
+        <input type="text" name="desription" placeholder="description"><br>
+        <input type="submit" value="submit"><br>
+        {% if messages %}
+            {%for message in messages%}
+                {{message}}
+            {%endfor%}
+        {% endif%}
+    </form>
+
+
 </body>
 </html>
