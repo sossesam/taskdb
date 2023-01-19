@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from  .forms import TaskForm
+from .forms import TaskForm
 from .models import taskD
 from django.contrib import messages
 # Create your views here.
@@ -19,8 +19,12 @@ def home(request):
          return render(request, 'index.html', {"all_task":all_task})
 
 
-
-
+def delete(request, list_id):
+    item = taskD.objects.get(id=list_id)
+    item.delete()
+    messages.success(request, "item has been deleted")
+    return redirect('home')
+    
 
      
     
